@@ -1,0 +1,38 @@
+body {
+  background: PowderBlue;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+}
+
+h2 {
+  font-family: 'Permanent Marker', cursive;
+  margin:0;
+}
+
+p {
+  font-family: 'Indie Flower', cursive;
+}
+
+#container {
+}
+
+#map {
+  border: 1px solid black;
+  height: 600px;
+  width:100%;
+}
+
+#container div {
+  margin:0 auto;
+}
+
+#container div {
+  background: RGBA(255,255,255,0.7);
+  padding:5px 15px;
+  width: 45%;
+  display: inline-block;
+  margin:5px;
+}
