@@ -16,13 +16,29 @@ p {
   font-family: 'Indie Flower', cursive;
 }
 
+#mapstuff {
+  display: flexblock;
+}
+
+#container h3 {
+  text-align:center;
+}
+
 #container {
+  width: 25%;
+  border:1px solid black;
+  height: 580px;;
+  background: rgba(200,200,200,0.7);
+  display:inline-block;
+  position: fixed;
+  padding:10px;
 }
 
 #map {
   border: 1px solid black;
   height: 600px;
-  width:100%;
+  width:75%;
+  display:inline-block;
 }
 
 #container div {

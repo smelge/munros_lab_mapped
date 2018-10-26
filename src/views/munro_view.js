@@ -10,21 +10,19 @@ MunroView.prototype.bindEvents = function(){
     // console.log('Munros: ',munro);
     // const munroMapper = [];
     munro.forEach((munroData,index)=>{
-      console.log(munroData.name)
+      // console.log(munroData.name)
       PubSub.publish('MunroView:add-marker', munroData)
     })
   });
   console.log('Munros: ',MunroView)
 
-
   function initMap() {
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var labelIndex = 0;
 
     function initialize() {
       var home = { lat: 57.2208866, lng: -5.1720024 };
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
+        mapTypeId: 'terrain',
+        zoom: 7,
         center: home
       });
 
@@ -32,14 +30,15 @@ MunroView.prototype.bindEvents = function(){
         const newMarker = evt.detail;
         // console.log('New: ',newMarker.name);
 
-        var content = `<div id='content'>"
-            "<div id='siteNotice'>"
-            "</div>"
-            "<h1 id='firstHeading' class='firstHeading'>"${newMarker.name}</h1>"
-            "<div id='bodyContent'>"
-            "<p>${newMarker.meaning}</p>"
-            "</div>"
-            "</div>"`;
+        var content = `
+          <div id='content'>
+            <div id='siteNotice'></div>
+            <h1 id='firstHeading' class='firstHeading'>${newMarker.name}</h1>
+            <div id='bodyContent'>
+              <p>${newMarker.meaning}</p>
+            </div>
+          </div>
+        `;
 
         var infowindow = new google.maps.InfoWindow({
           content: content
@@ -52,7 +51,8 @@ MunroView.prototype.bindEvents = function(){
         });
 
         marker.addListener('click', function() {
-          infowindow.open(map, marker);
+          // infowindow.open(map, marker);
+          PubSub.publish('Location:location-ready',newMarker);
         });
 
       });
@@ -61,6 +61,7 @@ MunroView.prototype.bindEvents = function(){
     google.maps.event.addDomListener(window, 'load', initialize);
   }
   initMap();
+
 }
 
 MunroView.prototype.render = function(munro,index){
